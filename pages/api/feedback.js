@@ -3,8 +3,8 @@ import path from 'path'
 
 function handler(req, res) {
   if(req.method === 'POST') {
-    const email = req.body.email;
-    const feedbackText = req.body.text;
+    const email = JSON.parse(req.body.email);
+    const feedbackText = JSON.parse(req.body.text);
 
     const newFeedback = {
       id: new Date().toISOString(),
@@ -16,8 +16,8 @@ function handler(req, res) {
     const filePath = path.join(process.cwd(), 'data', 'feedback.json')
     const fileData = fs.readFileSync(filePath)
     const data = JSON.parse(fileData)
-    data.push(newFeedback);
-    fs.writeFileSync(filePath, JSON.stringify(data));
+    data.push(newFeedback)
+fs.writeFileSync(filePath, JSON.stringify(allData));
     res.status(201).json({message: 'success!', feedback: newFeedback})
 
   } else {
