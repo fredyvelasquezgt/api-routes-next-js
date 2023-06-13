@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path'
 
 function buildFeedbackPath() {
-  return 
+  return path.join(process.cwd(), 'data', 'feedback.json')
 }
 
 function handler(req, res) {
@@ -17,7 +17,7 @@ function handler(req, res) {
     };
 
     //store data in a database or in a file 
-    const filePath = path.join(process.cwd(), 'data', 'feedback.json')
+    const filePath = 
     const fileData = fs.readFileSync(filePath)
     const data = JSON.parse(fileData)
     data.push(newFeedback)
