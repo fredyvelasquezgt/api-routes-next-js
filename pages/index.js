@@ -5,10 +5,17 @@ function HomePage() {
   const emailInputRef = useRef();
   const feedbackInputRef = useRef();
 
+  function submitFormHandler(event) {
+    event.preventDefault();
+
+    const enteredEmail = emailInputRef.current.value;
+    const enteredFeedback = feedbackInputRef.current.value;
+  }
+
   return (
     <div>
       <h1>Home Page</h1>
-      <form>
+      <form onSubmit={submitFormHandler}>
         <div>
           <label htmlFor="email">Your Email Address</label>
           <input type="email" id="email" ref={emailInputRef} />
