@@ -5,6 +5,11 @@ function buildFeedbackPath() {
   return path.join(process.cwd(), 'data', 'feedback.json')
 }
 
+function extractFeedback() {
+  const fileData = fs.readFileSync(filePath)
+  const data = JSON.parse(fileData)
+}
+
 function handler(req, res) {
   if(req.method === 'POST') {
     const email = JSON.parse(req.body.email);
@@ -18,8 +23,7 @@ function handler(req, res) {
 
     //store data in a database or in a file 
     const filePath = buildFeedbackPath();
-    const fileData = fs.readFileSync(filePath)
-    const data = JSON.parse(fileData)
+    
     data.push(newFeedback)
     fs.writeFileSync(filePath, JSON.stringify(allData));
     res.status(201).json({message: 'success!', feedback: newFeedback})
