@@ -17,7 +17,7 @@ function handler(req, res) {
     };
 
     //store data in a database or in a file 
-    const filePath = 
+    const filePath = buildFeedbackPath();
     const fileData = fs.readFileSync(filePath)
     const data = JSON.parse(fileData)
     data.push(newFeedback)
@@ -25,6 +25,7 @@ function handler(req, res) {
     res.status(201).json({message: 'success!', feedback: newFeedback})
 
   } else {
+    const filePath = buildFeedbackPath();
     res.status(200).json({message: 'this works'});
   }
 }
